@@ -1,10 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 
 export default function GameContent() {
   return (
     <View>
-      <Text>Hello</Text>
+      <TextInput style={styles.input} />
+      <Button title="Thêm mới" style={styles.button} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  input: {
+    height: 50,
+    borderWidth: 1,
+    margin: 10,
+  },
+  button: {
+    width: 120,
+  },
+});
