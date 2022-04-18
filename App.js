@@ -8,17 +8,10 @@
 
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
-import GameContent from './src/modules/GameContent';
-
-import StartComponent from './src/modules/StartComponent';
+import Login from './src/modules/Login';
 
 export default function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  return isPlaying ? (
-    <GameContent />
-  ) : (
-    <StartComponent setIsPlaying={setIsPlaying} />
-  );
+  return(<Login/>)
 }
 
 const styles = StyleSheet.create({});
