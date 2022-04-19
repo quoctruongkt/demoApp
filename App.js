@@ -9,10 +9,10 @@
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Login from './src/modules/Login';
-import WareHouse from './src/modules/WareHouse';
+import NavTab from './src/modules/NavTab';
 
 export default function App() {
-  return <WareHouse />;
+  return <NavTab />;
 }
 
 const styles = StyleSheet.create({});
