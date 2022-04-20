@@ -3,7 +3,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Login from '../Login';
 import WareHouse from '../WareHouse';
 import Empty from '../Empty';
 
@@ -43,11 +42,11 @@ export default function NavTab() {
           tabBarInactiveTintColor: '#aaa',
           tabBarIcon: ({ focused }) => {
             const iconName = getIconName(route.name, focused)
-            return <Icon name={iconName} size={25} color="#900" />;
+            return <Icon name={iconName} size={25} color="#EE202E" />;
           },
         })}>
         <Tab.Screen name={TAB_HOME} component={Empty} />
-        <Tab.Screen name={TAB_WARE_HOUSE} component={WareHouse} />
+        <Tab.Screen name={TAB_WARE_HOUSE} component={WareHouse} options={{ headerTitleAlign: 'center' }} />
         <Tab.Screen name={TAB_COMMUNITY} component={Empty} />
         <Tab.Screen name={TAB_ORDER} component={Empty} />
         <Tab.Screen name={TAB_PERSON} component={Empty} />
