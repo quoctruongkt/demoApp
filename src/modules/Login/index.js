@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useForm, Controller} from 'react-hook-form';
 import {
@@ -13,6 +13,14 @@ import {
   KeyboardAvoidingView,
   ToastAndroid,
 } from 'react-native';
+import SQLite from 'react-native-sqlite-storage';
+import {postLogin} from '../../services/login';
+
+const db = SQLite.openDatabase(
+  {name: 'demoAppDatabase.db', location: 'default'},
+  () => {},
+  error => console.log(error),
+);
 
 export default function Login() {
   const {
@@ -20,25 +28,42 @@ export default function Login() {
     control,
     formState: {errors},
   } = useForm();
+
+  useEffect(() => {
+    createTable();
+  }, []);
+  const createTable = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS users (Id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, Token TEXT, UserInfo TEXT)',
+      );
+    });
+  };
   const onLogin = dataForm => {
-    axios
-      .post('https://api.dev.monkeyuni.net/api/v1/login-for-book?lang=vi-VN', {
-        type: 3,
-        phone: dataForm.phone,
-        email: '',
-        userNameCrm: '',
-        is_web: 1,
-        app_id: 68,
-        password: dataForm.password,
-      })
-      .then(res => {
-        console.log(res);
-        if (res.data.status === 'success') {
-          ToastAndroid.show('Đăng nhập thành công!', ToastAndroid.SHORT);
-        } else {
-          ToastAndroid.show(res?.data?.message, ToastAndroid.SHORT);
-        }
-      });
+    postLogin({
+      type: 3,
+      phone: dataForm.phone,
+      email: '',
+      userNameCrm: '',
+      is_web: 1,
+      app_id: 68,
+      password: dataForm.password,
+    }).then(res => {
+      if (res.data.status === 'success') {
+        const userId = res.data.data.user_id;
+        const token = res.data.data.access_token;
+        const userInfo = JSON.stringify(res.data.data.user_info);
+        ToastAndroid.show('Đăng nhập thành công!', ToastAndroid.SHORT);
+        db.transaction(tx => {
+          tx.executeSql(
+            'INSERT INTO users (UserId, Token, UserInfo) VALUES (?, ?, ?)',
+            [userId, token, userInfo],
+          );
+        });
+      } else {
+        ToastAndroid.show(res?.data?.message, ToastAndroid.SHORT);
+      }
+    });
   };
   return (
     <View style={styles.loginContainer}>
