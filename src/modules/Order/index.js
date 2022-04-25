@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {View, StyleSheet, Text, FlatList, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import IconAnt from 'react-native-vector-icons/AntDesign';
 import SearchProduct from '../../components/SearchProduct';
+import imgPaid from '../../assets/images/paid.png';
 
 const dataFull = [
   {
@@ -72,6 +74,9 @@ const dataFull = [
   },
 ];
 
+const img =
+  'https://play-lh.googleusercontent.com/jQDN_7DzKJUpWMnqvgGKfNSef4AIJxmd6QhDtoqYQ9a4Mg98OenvyfEyMwcBUfsqX4U';
+
 export default function Order() {
   const [time, setTime] = useState('all');
   const onSubmitSearch = dataForm => {
@@ -87,10 +92,8 @@ export default function Order() {
       <View style={styles.turnoverWrapper}>
         <View style={[styles.turnoverItem, styles.totalTurnover]}>
           <View>
-            <Text style={{color: 'white'}}>Tổng doanh số</Text>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              40.000.000
-            </Text>
+            <Text style={styles.colorWhite}>Tổng doanh số</Text>
+            <Text style={[styles.colorWhite, styles.value]}>40.000.000</Text>
           </View>
           <View>
             <View style={styles.iconWrapper}>
@@ -100,10 +103,8 @@ export default function Order() {
         </View>
         <View style={[styles.turnoverItem, styles.totalInterest]}>
           <View>
-            <Text style={{color: 'white'}}>Tổng hoa hồng</Text>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              40.000.000
-            </Text>
+            <Text style={styles.colorWhite}>Tổng hoa hồng</Text>
+            <Text style={[styles.colorWhite, styles.value]}>40.000.000</Text>
           </View>
           <View>
             <View style={styles.iconWrapper}>
@@ -112,28 +113,62 @@ export default function Order() {
           </View>
         </View>
       </View>
-      <FlatList
-        data={dataFull}
-        renderItem={({item}) => (
-          <View style={{paddingLeft: 5, paddingRight: 5}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginBottom: 10,
-              }}>
-              <Text>
-                <Text>{`#${item.id}`}</Text>&nbsp;&nbsp;
-                <Text>{item.customer}</Text>
-              </Text>
-              <Text>{item.date}</Text>
+      <View style={styles.listContainer}>
+        <FlatList
+          data={dataFull}
+          renderItem={({item}) => (
+            <View style={styles.productWrapper}>
+              <View style={styles.productHeader}>
+                <Text>
+                  <Text>{`#${item.id}`}</Text>&nbsp;&nbsp;
+                  <Text style={styles.colorBlack}>{item.customer}</Text>
+                </Text>
+                <Text>{item.date}</Text>
+              </View>
+              <View style={styles.productBody}>
+                <View style={styles.imgWrapper}>
+                  <Image
+                    source={{
+                      uri: img,
+                    }}
+                    style={styles.imgProduct}
+                  />
+                </View>
+                <View style={{flex: 2}}>
+                  <Text style={styles.colorBlack}>{item.nameProduct}</Text>
+                  <Text>
+                    Tiền thưởng:&nbsp;
+                    <Text style={styles.colorRed}>{item.bonus}</Text>
+                  </Text>
+                  <Text>
+                    Tổng đơn:&nbsp;
+                    <Text style={styles.colorBlack}>{item.total}</Text>
+                  </Text>
+                </View>
+                <View style={styles.imgWrapper}>
+                  <Image source={imgPaid} />
+                </View>
+              </View>
+              <View style={styles.productFooter}>
+                <View>
+                  <View style={styles.statusWrapper}>
+                    <Text>{item.status}</Text>
+                  </View>
+                </View>
+                <View>
+                  <View style={styles.likeWrapper}>
+                    <Text style={styles.colorOrange}>
+                      <IconAnt name="like2" size={16} /> Đánh giá
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>
-            <View></View>
-          </View>
-        )}
-        key={item => item.id}
-        style={{marginTop: 10}}
-      />
+          )}
+          key={item => item.id}
+          style={{marginTop: 10}}
+        />
+      </View>
     </View>
   );
 }
@@ -146,7 +181,6 @@ const styles = StyleSheet.create({
   turnoverWrapper: {
     flexDirection: 'row',
     paddingTop: 10,
-    paddingBottom: 10,
     paddingLeft: 5,
     paddingRight: 5,
     backgroundColor: '#F0F4F7',
@@ -170,5 +204,72 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 90,
     padding: 5,
+  },
+  productWrapper: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    padding: 5,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+  },
+  productHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  productBody: {
+    flexDirection: 'row',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  productFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+    paddingBottom: 5,
+    borderTopWidth: 1,
+    borderTopColor: '#E7E7E7',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  statusWrapper: {
+    backgroundColor: 'rgba(10, 143, 239, 0.1)',
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 5,
+  },
+  likeWrapper: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#f70',
+  },
+  colorWhite: {
+    color: '#fff',
+  },
+  value: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  listContainer: {backgroundColor: '#F0F4F7', paddingBottom: 130},
+  colorBlack: {
+    color: 'black',
+  },
+  colorRed: {
+    color: 'red',
+  },
+  colorOrange: {
+    color: '#f70',
+  },
+  imgWrapper: {flex: 1, alignItems: 'center'},
+  imgProduct: {
+    width: 60,
+    height: 60,
   },
 });
