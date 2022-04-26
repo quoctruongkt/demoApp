@@ -11,26 +11,30 @@ import {StyleSheet} from 'react-native';
 import Login from './src/modules/Login';
 import NavTab from './src/modules/NavTab';
 import {db} from './src/services/app';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [user, setUser] = useState();
-  useEffect(() => {
-    const user = getData();
-    setUser(user);
-  }, []);
-  const getData = () => {
-    let info = {};
-    db.transaction(async tx => {
-      await tx.executeSql('select * from users', [], (tx, result) => {
-        if (result.rows.length > 0) {
-          info = result.rows.item(0);
-        }
-      });
-    });
-    return info;
-  };
 
-  return <NavTab />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Home"
+          component={NavTab}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({});

@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import WareHouse from '../WareHouse';
@@ -36,43 +35,41 @@ export default function NavTab() {
     }
   };
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarActiveTintColor: '#EE202E',
-          tabBarInactiveTintColor: '#aaa',
-          tabBarIcon: ({focused}) => {
-            const iconName = getIconName(route.name, focused);
-            return <Icon name={iconName} size={25} color="#EE202E" />;
-          },
-        })}>
-        <Tab.Screen
-          name={TAB_HOME}
-          component={Empty}
-          options={{headerTitleAlign: 'center'}}
-        />
-        <Tab.Screen
-          name={TAB_WARE_HOUSE}
-          component={WareHouse}
-          options={{headerTitleAlign: 'center'}}
-        />
-        <Tab.Screen
-          name={TAB_COMMUNITY}
-          component={Empty}
-          options={{headerTitleAlign: 'center'}}
-        />
-        <Tab.Screen
-          name={TAB_ORDER}
-          component={Order}
-          options={{headerTitleAlign: 'center'}}
-        />
-        <Tab.Screen
-          name={TAB_PERSON}
-          component={Empty}
-          options={{headerTitleAlign: 'center'}}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: '#EE202E',
+        tabBarInactiveTintColor: '#aaa',
+        tabBarIcon: ({focused}) => {
+          const iconName = getIconName(route.name, focused);
+          return <Icon name={iconName} size={25} color="#EE202E" />;
+        },
+      })}>
+      <Tab.Screen
+        name={TAB_HOME}
+        component={Empty}
+        options={{headerTitleAlign: 'center'}}
+      />
+      <Tab.Screen
+        name={TAB_WARE_HOUSE}
+        component={WareHouse}
+        options={{headerTitleAlign: 'center'}}
+      />
+      <Tab.Screen
+        name={TAB_COMMUNITY}
+        component={Empty}
+        options={{headerTitleAlign: 'center'}}
+      />
+      <Tab.Screen
+        name={TAB_ORDER}
+        component={Order}
+        options={{headerTitleAlign: 'center'}}
+      />
+      <Tab.Screen
+        name={TAB_PERSON}
+        component={Empty}
+        options={{headerTitleAlign: 'center'}}
+      />
+    </Tab.Navigator>
   );
 }
 

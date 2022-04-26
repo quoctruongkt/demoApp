@@ -22,7 +22,7 @@ const db = SQLite.openDatabase(
   error => console.log(error),
 );
 
-export default function Login({setIsLogin}) {
+export default function Login({navigation}) {
   const {
     handleSubmit,
     control,
@@ -39,6 +39,25 @@ export default function Login({setIsLogin}) {
       );
     });
   };
+
+  useEffect(() => {
+    const user = getData();
+    if (user) {
+      navigation.navigate('Home');
+    }
+  }, []);
+  const getData = () => {
+    let info = {};
+    db.transaction(async tx => {
+      await tx.executeSql('select * from users', [], (tx, result) => {
+        if (result.rows.length > 0) {
+          info = result.rows.item(0);
+        }
+      });
+    });
+    return info;
+  };
+
   const onLogin = dataForm => {
     postLogin({
       type: 3,
@@ -60,7 +79,8 @@ export default function Login({setIsLogin}) {
             [userId, token, userInfo],
           );
         });
-        setIsLogin(true);
+        // setIsLogin(true);
+        navigation.navigate('Home');
       } else {
         ToastAndroid.show(res?.data?.message, ToastAndroid.SHORT);
       }
