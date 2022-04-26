@@ -22,7 +22,7 @@ const db = SQLite.openDatabase(
   error => console.log(error),
 );
 
-export default function Login() {
+export default function Login({setIsLogin}) {
   const {
     handleSubmit,
     control,
@@ -60,6 +60,7 @@ export default function Login() {
             [userId, token, userInfo],
           );
         });
+        setIsLogin(true);
       } else {
         ToastAndroid.show(res?.data?.message, ToastAndroid.SHORT);
       }

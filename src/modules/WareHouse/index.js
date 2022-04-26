@@ -139,6 +139,7 @@ export default function WareHouse() {
             renderItem={item => <Item info={item.item} time={time} />}
             keyExtractor={item => item.id}
             style={{marginTop: 10}}
+            key={item => item.id}
           />
         ) : (
           <Text style={styles.textEmpty}>Không tìm thấy dữ liệu</Text>

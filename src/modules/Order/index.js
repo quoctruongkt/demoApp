@@ -12,9 +12,25 @@ import isBetween from 'dayjs/plugin/isBetween';
 import isToday from 'dayjs/plugin/isToday';
 
 import Icon from 'react-native-vector-icons/Feather';
-import IconAnt from 'react-native-vector-icons/AntDesign';
 import SearchProduct from '../../components/SearchProduct';
+import IconAnt from 'react-native-vector-icons/AntDesign';
 import imgPaid from '../../assets/images/paid.png';
+import Item from './Item';
+
+const statusArr = [
+  {
+    id: 1,
+    label: 'Đăng đơn',
+  },
+  {
+    id: 2,
+    label: 'Chờ giao',
+  },
+  {
+    id: 3,
+    label: 'Đã giao',
+  },
+];
 
 const dataFull = [
   {
@@ -25,7 +41,7 @@ const dataFull = [
     bonus: 50000,
     total: 499000,
     paid: false,
-    status: 'Đã giao',
+    idStatus: 1,
     like: false,
   },
   {
@@ -35,8 +51,8 @@ const dataFull = [
     nameProduct: 'Monkey Junior trọn đời',
     bonus: 50000,
     total: 499000,
-    paid: true,
-    status: 'Đã giao',
+    paid: false,
+    idStatus: 2,
     like: false,
   },
   {
@@ -47,7 +63,7 @@ const dataFull = [
     bonus: 50000,
     total: 499000,
     paid: true,
-    status: 'Đã giao',
+    idStatus: 3,
     like: false,
   },
   {
@@ -58,7 +74,7 @@ const dataFull = [
     bonus: 50000,
     total: 499000,
     paid: true,
-    status: 'Đã giao',
+    idStatus: 3,
     like: false,
   },
   {
@@ -68,8 +84,8 @@ const dataFull = [
     nameProduct: 'Monkey Junior trọn đời',
     bonus: 50000,
     total: 499000,
-    paid: true,
-    status: 'Đã giao',
+    paid: false,
+    idStatus: 1,
     like: false,
   },
   {
@@ -79,14 +95,11 @@ const dataFull = [
     nameProduct: 'Monkey Junior trọn đời',
     bonus: 50000,
     total: 499000,
-    paid: true,
-    status: 'Đã giao',
+    paid: false,
+    idStatus: 2,
     like: false,
   },
 ];
-
-const img =
-  'https://play-lh.googleusercontent.com/jQDN_7DzKJUpWMnqvgGKfNSef4AIJxmd6QhDtoqYQ9a4Mg98OenvyfEyMwcBUfsqX4U';
 
 dayjs.extend(isBetween);
 dayjs.extend(isToday);
@@ -203,56 +216,11 @@ export default function Order() {
         <FlatList
           data={data}
           renderItem={({item}) => (
-            <View style={styles.productWrapper}>
-              <View style={styles.productHeader}>
-                <Text>
-                  <Text>{`#${item.id}`}</Text>&nbsp;&nbsp;
-                  <Text style={styles.colorBlack}>{item.customer}</Text>
-                </Text>
-                <Text>{dayjs.unix(item.date).format('DD/MM/YYYY')}</Text>
-              </View>
-              <View style={styles.productBody}>
-                <View style={styles.imgWrapper}>
-                  <Image
-                    source={{
-                      uri: img,
-                    }}
-                    style={styles.imgProduct}
-                  />
-                </View>
-                <View style={{flex: 2}}>
-                  <Text style={styles.colorBlack}>{item.nameProduct}</Text>
-                  <Text>
-                    Tiền thưởng:&nbsp;
-                    <Text style={styles.colorRed}>
-                      {item.bonus.toLocaleString()}
-                    </Text>
-                  </Text>
-                  <Text>
-                    Tổng đơn:&nbsp;
-                    <Text style={styles.colorBlack}>
-                      {item.total.toLocaleString()}
-                    </Text>
-                  </Text>
-                </View>
-                <View style={styles.imgWrapper}>
-                  {item.paid && <Image source={imgPaid} />}
-                </View>
-              </View>
-              <View style={styles.productFooter}>
-                <View style={styles.statusWrapper}>
-                  <Text>{item.status}</Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.likeWrapper}
-                  onPress={() => onHandleLike(item.id)}>
-                  <Text style={styles.colorOrange}>
-                    <IconAnt name={item.like ? 'like1' : 'like2'} size={16} />{' '}
-                    Đánh giá
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            <Item
+              item={item}
+              statusArr={statusArr}
+              onHandleLike={onHandleLike}
+            />
           )}
           key={item => item.id}
         />
@@ -294,51 +262,7 @@ const styles = StyleSheet.create({
     borderRadius: 90,
     padding: 5,
   },
-  productWrapper: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    padding: 5,
-    marginBottom: 10,
-    backgroundColor: '#fff',
-  },
-  productHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  productBody: {
-    flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  productFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 10,
-    paddingBottom: 5,
-    borderTopWidth: 1,
-    borderTopColor: '#E7E7E7',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  statusWrapper: {
-    backgroundColor: 'rgba(10, 143, 239, 0.1)',
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderRadius: 5,
-  },
-  likeWrapper: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#f70',
-  },
+
   colorWhite: {
     color: '#fff',
   },
