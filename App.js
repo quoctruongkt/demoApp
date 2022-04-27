@@ -10,6 +10,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import Login from './src/modules/Login';
 import NavTab from './src/modules/NavTab';
+import OrderDetail from './src/modules/OrderDetail';
 import {db} from './src/services/app';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
@@ -31,6 +32,14 @@ export default function App() {
           name="Home"
           component={NavTab}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OrderDetail"
+          component={OrderDetail}
+          options={{
+            headerTitle: 'Thông tin đơn hàng',
+          }}
+          getId={({params}) => params.orderId}
         />
       </Stack.Navigator>
     </NavigationContainer>

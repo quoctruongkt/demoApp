@@ -32,6 +32,219 @@ const statusArr = [
   },
 ];
 
+const dataFull1 = [
+  {
+    id: 12345670,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345671,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345672,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345673,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345674,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345675,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345676,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345677,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345678,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+  {
+    id: 12345679,
+    customer: {
+      name: 'Đinh Quốc Trưởng',
+      phone: '0964878794',
+      location: 'Thanh Sơn, Phú Thọ',
+      website: 'http://monkeyshop.com/junior',
+    },
+    date: [
+      {time: 1650844800, title: 'Đặt hàng thành công'},
+      {time: 1650844800, title: 'Tiếp nhận đơn hàng'},
+      {time: 1650844800, title: 'Giao hàng thành công'},
+    ],
+    nameProduct: 'Monkey Junior trọn đời',
+    bonus: 50000,
+    total: 499000,
+    quantity: 1,
+    paid: true,
+    idStatus: 1,
+    like: false,
+  },
+];
+
 const dataFull = [
   {
     id: 12345670,
@@ -40,7 +253,7 @@ const dataFull = [
     nameProduct: 'Monkey Junior trọn đời',
     bonus: 50000,
     total: 499000,
-    paid: false,
+    paid: true,
     idStatus: 1,
     like: false,
   },
@@ -104,7 +317,7 @@ const dataFull = [
 dayjs.extend(isBetween);
 dayjs.extend(isToday);
 
-export default function Order() {
+export default function Order({navigation}) {
   const [data, setData] = useState([]);
   const [time, setTime] = useState('all');
   const [searchValue, setSearchValue] = useState('');
@@ -220,6 +433,8 @@ export default function Order() {
               item={item}
               statusArr={statusArr}
               onHandleLike={onHandleLike}
+              key={item.id}
+              navigation={navigation}
             />
           )}
           key={item => item.id}
@@ -279,10 +494,5 @@ const styles = StyleSheet.create({
   },
   colorOrange: {
     color: '#f70',
-  },
-  imgWrapper: {flex: 1, alignItems: 'center'},
-  imgProduct: {
-    width: 60,
-    height: 60,
   },
 });

@@ -4,9 +4,8 @@ import dayjs from 'dayjs';
 import IconAnt from 'react-native-vector-icons/AntDesign';
 import imgPaid from '../../assets/images/paid.png';
 
-export default function Item({item, statusArr, onHandleLike}) {
+export default function Item({item, statusArr, onHandleLike, navigation}) {
   const status = statusArr.find(i => i.id === item.idStatus);
-  console.log(status);
   const img =
     'https://play-lh.googleusercontent.com/jQDN_7DzKJUpWMnqvgGKfNSef4AIJxmd6QhDtoqYQ9a4Mg98OenvyfEyMwcBUfsqX4U';
   return (
@@ -18,7 +17,9 @@ export default function Item({item, statusArr, onHandleLike}) {
         </Text>
         <Text>{dayjs.unix(item.date).format('DD/MM/YYYY')}</Text>
       </View>
-      <View style={styles.productBody}>
+      <TouchableOpacity
+        style={styles.productBody}
+        onPress={() => navigation.navigate('OrderDetail', {orderId: item.id})}>
         <View style={styles.imgWrapper}>
           <Image
             source={{
@@ -41,7 +42,7 @@ export default function Item({item, statusArr, onHandleLike}) {
         <View style={styles.imgWrapper}>
           {item.paid && <Image source={imgPaid} />}
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={styles.productFooter}>
         <View style={styles.statusWrapper}>
           <Text>{status?.label}</Text>
@@ -108,5 +109,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#f70',
+  },
+  imgWrapper: {flex: 1, alignItems: 'center'},
+  imgProduct: {
+    width: 60,
+    height: 60,
   },
 });
